@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from app.api.chat import router as chat_router, html
-from app.services.gemini import response
 
 app = FastAPI()
 
@@ -26,7 +25,6 @@ async def get_chat():
 # Debug route to check if server is running
 @app.get("/debug")
 async def debug():
-    print(response.text)
     return {"routes": [{"path": route.path, "name": route.name} for route in app.routes]}
 
 if __name__ == "__main__":
